@@ -1,0 +1,49 @@
+apply plugin: "com.android.application"
+apply plugin: "com.google.firebase.crashlytics"
+apply plugin: "com.google.gms.google-services"
+android {
+    buildToolsVersion "30.0.3"
+    signingConfigs {
+        key {
+            keyAlias "GeekBrains"
+            keyPassword "GeekBrains"
+            storeFile file("key")
+            storePassword "GeekBrains"
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            multiDexEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.key
+        }
+        release {
+            minifyEnabled false
+            multiDexEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.key
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion 30
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+}
+dependencies {
+    implementation platform("com.google.firebase:firebase-bom:28.3.1")
+    implementation "com.google.firebase:firebase-crashlytics"
+    implementation "com.google.firebase:firebase-messaging"
+    implementation "com.google.firebase:firebase-analytics"
+}
+repositories {
+    google()
+    mavenCentral()
+}
